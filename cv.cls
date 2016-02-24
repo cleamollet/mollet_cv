@@ -164,7 +164,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 \newflowframe[1]{\rightW}{0.74\textheight}{\rightX}{0.20\textheight}[main1]
 
 % main2 frame
-\newflowframe[1]{\textwidth}{0.80\textheight}{0pt}{0pt}[main2]
+\newflowframe[1]{\textwidth}{0.830\textheight}{0pt}{0pt}[main2]
 
 \newflowframe[1]{\textwidth}{0.07\textheight}{0pt}{0pt}[lang]
 
