@@ -22,6 +22,8 @@
 \RequirePackage[a4paper,left=1.5cm,top=2cm,right=1.5cm,bottom=1.5cm,nohead,nofoot]{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{lipsum}
+\newcommand{\shiftleft}[2]{\makebox[0pt][r]{\makebox[#1][l]{#2}}}
+\newcommand{\shiftright}[2]{\makebox[#1][r]{\makebox[0pt][l]{#2}}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,7 +92,6 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
     \edef\x{\endgroup\def\noexpand\pdfcreationdate{\tempa\tempb}}\x
   \fi
 \fi
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FLOWFRAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -164,7 +165,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 \newflowframe[1]{\rightW}{0.74\textheight}{\rightX}{0.20\textheight}[main1]
 
 % main2 frame
-\newflowframe[1]{\textwidth}{0.830\textheight}{0pt}{0pt}[main2]
+\newflowframe[1]{\textwidth}{0.80\textheight}{0pt}{0pt}[main2]
 
 \newflowframe[1]{\textwidth}{0.07\textheight}{0pt}{0pt}[lang]
 
@@ -186,7 +187,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 \titleformat{\section}
 {\Large\sectionfont\color{sectioncolor}}
 {\thesection}{0pt}{}
-\titlespacing{\section}{0pt}{0pt}{-1.0\parskip}
+\titlespacing{\section}{0pt}{0pt}{-0.0\parskip}
 
 % subsection
 \titleformat{\subsection}
@@ -239,11 +240,22 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
     \textbf{#3}%
     \hfill%
     {\footnotesize\addfontfeature{Color=lightgray} #4}\\%
-    \parbox[t]{0.74\textwidth}{%
-    #5}\hfill
 %    \vcenteredinclude{#2}
-    #2
- }\\}
+    \newsavebox\mybox%
+    \savebox{\mybox}{%
+      \parbox[c]{0.70\textwidth}{%
+        #5}%
+    }%
+    \parbox[c][2.3\ht\mybox\relax]{0.70\textwidth}{%
+      #5}%
+    \shiftleft{\dimexpr-\width-0.2cm}{%
+      \raisebox{\dimexpr-\height+\ht\mybox\relax}{%
+%%         \includegraphics[width=1.8cm]{#2}%
+        \includegraphics[width=1.2cm]{#2}%
+      }%
+    }%
+    \global\let\mybox\relax%
+  }\\}
 
 % entrylistdated
 \setlength{\tabcolsep}{0pt}
@@ -258,7 +270,15 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
     \textbf{#2}%
     \hfill%
     {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
-    #4\vspace{\parsep}%
+    \newsavebox\ymbox%
+    \savebox{\ymbox}{%
+      \parbox[c]{0.70\textwidth}{%
+        #4}%
+    }%
+    \parbox[c][2.3\ht\ymbox\relax]{0.70\textwidth}{%
+      #4}%
+    \global\let\ymbox\relax%
+    \vspace{\parsep}%
   }\\}
 
 
