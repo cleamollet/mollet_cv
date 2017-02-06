@@ -251,7 +251,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
     \shiftleft{\dimexpr-\width-0.2cm}{%
       \raisebox{\dimexpr-\height+\ht\mybox\relax}{%
 %%         \includegraphics[width=1.8cm]{#2}%
-        \includegraphics[width=1.2cm]{#2}%
+        \includegraphics[width=1cm]{#2}%
       }%
     }%
     \global\let\mybox\relax%
